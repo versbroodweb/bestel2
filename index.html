@@ -1,174 +1,192 @@
-+218
-Lines changed: 218 additions & 0 deletions
-Original file line number	Diff line number	Diff line change
-@@ -0,0 +1,218 @@
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Versbrood Almelo</title>
+
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
 body {
-    background-color: #f4efe6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f7f3e9;
     color: #333;
 }
+
 header {
-    background-color: #7a4b1f;
+    background-color: #8b5a2b;
     color: white;
     text-align: center;
-    padding: 25px 15px;
+    padding: 25px 10px;
 }
+
 header h1 {
+    margin: 0;
     font-size: 32px;
-    margin-bottom: 5px;
 }
-header p {
-    font-size: 16px;
-}
+
 .container {
     max-width: 900px;
-    margin: 20px auto;
-    padding: 15px;
+    margin: auto;
+    padding: 20px;
 }
+
 .section {
     background: white;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-h2 {
-    margin-bottom: 15px;
-}
+
 .product {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
 }
+
 .product:last-child {
     border-bottom: none;
 }
-.product span {
-    font-size: 16px;
-}
+
 .product input {
     width: 60px;
-    padding: 6px;
+    padding: 5px;
 }
-input[type="text"], select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
+
 button {
-    width: 100%;
-    padding: 15px;
-    background-color: #7a4b1f;
+    background-color: #8b5a2b;
     color: white;
     border: none;
+    padding: 15px;
+    width: 100%;
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
 }
+
 button:hover {
-    background-color: #5e3817;
+    background-color: #6f451f;
 }
+
 .contact p {
-    margin-bottom: 6px;
+    margin: 5px 0;
 }
+
 footer {
-    background-color: #7a4b1f;
-    color: white;
     text-align: center;
     padding: 15px;
-    margin-top: 30px;
-}
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 26px;
-    }
+    background: #8b5a2b;
+    color: white;
 }
 </style>
+
 </head>
+
 <body>
+
 <header>
     <h1>Versbrood</h1>
-    <p>Dagelijks vers brood in Almelo – Afhalen & Bezorging</p>
+    <p>Dagelijks vers brood - Afhalen & Bezorging in en rond Almelo</p>
 </header>
+
 <div class="container">
+
 <div class="section">
-<h2>Bestel uw brood</h2>
-<form onsubmit="bestellingVersturen(); return false;">
-<!-- PRODUCTEN -->
+<h2>Bestel Brood</h2>
+
+<form onsubmit="sendOrder(); return false;">
+
 <div class="product">
-    <span>Witbrood (€2,50)</span>
-    <input type="number" id="Witbrood" min="0" value="0">
+    <span>afbak witte bollen 2x60g (€1,75)</span>
+    <input type="number" id="afbak witte bollen" min="0" value="0">
 </div>
+
 <div class="product">
-    <span>Bruinbrood (€2,50)</span>
-    <input type="number" id="Bruinbrood" min="0" value="0">
+    <span>afbak bruine bollen 2x60g (€1,75)</span>
+    <input type="number" id="afbak bruine bollen" min="0" value="0">
 </div>
+
 <div class="product">
     <span>Volkorenbrood (€2,80)</span>
     <input type="number" id="Volkorenbrood" min="0" value="0">
 </div>
+
 <div class="product">
-    <span>Meergranenbrood (€3,00)</span>
-    <input type="number" id="Meergranenbrood" min="0" value="0">
+    <span>tarw wit brood (€3,00)</span>
+    <input type="number" id="tarwe wit brood" min="0" value="0">
 </div>
+
 <br>
-<label>Naam:</label> <input type="text" id="naam" required>
-<label>Afhalen of bezorgen:</label> <select id="levering"> <option>Afhalen</option> <option>Bezorging</option> </select>
-<label>Adres (alleen bij bezorging):</label> <input type="text" id="adres">
-<button type="submit">Bestelling per e-mail verzenden</button>
+<label>Naam:</label><br>
+<input type="text" id="naam" required style="width:100%; padding:8px;"><br><br>
+
+<label>Afhalen of bezorgen:</label><br> <select id="levering" style="width:100%; padding:8px;">
+
+<option>Afhalen</option>
+<option>Bezorging(€5)</option>
+</select><br><br>
+
+<label>Adres (alleen bij bezorging):</label><br> <input type="text" id="adres" style="width:100%; padding:8px;"><br><br>
+
+<button type="submit">Bestelling per e-mail versturen</button>
+
 </form>
+    <label>Kortingscode (optioneel):</label>
+<input type="text" id="kortingscode" placeholder="Bijv. VERSBROOD5">
+<p id="korting-info" style="color: green; font-weight: bold;"></p>
+
 </div>
+
 <div class="section contact">
 <h2>Contact</h2>
 <p><strong>Adres:</strong> Beymahuis 17, Almelo</p>
 <p><strong>Telefoon:</strong> +31 6 17255796</p>
 <p><strong>E-mail:</strong> info.versbrood@gmail.com</p>
 </div>
+
 </div>
+
 <footer>
 © 2026 Versbrood
 </footer>
+
 <script>
-function bestellingVersturen() {
+function sendOrder() {
+
 let producten = [
-"Witbrood",
-"Bruinbrood",
+"afbak witte bollen",
+"afbak bruine bollen ",
 "Volkorenbrood",
-"Meergranenbrood"
+"tarwe wit brood"
 ];
-let tekst = "Nieuwe bestelling:%0D%0A%0D%0A";
-producten.forEach(function(product) {
-    let aantal = document.getElementById(product).value;
+
+let bestelling = "Nieuwe bestelling:%0D%0A%0D%0A";
+
+producten.forEach(function(p) {
+    let aantal = document.getElementById(p).value;
     if (aantal > 0) {
-        tekst += product + ": " + aantal + "%0D%0A";
+        bestelling += p + ": " + aantal + "%0D%0A";
     }
 });
+
 let naam = document.getElementById("naam").value;
 let levering = document.getElementById("levering").value;
 let adres = document.getElementById("adres").value;
-tekst += "%0D%0ANaam: " + naam;
-tekst += "%0D%0ALevering: " + levering;
+
+bestelling += "%0D%0ANaam: " + naam;
+bestelling += "%0D%0ALevering: " + levering;
+
 if (levering === "Bezorging") {
-    tekst += "%0D%0AAdres: " + adres;
+    bestelling += "%0D%0AAdres: " + adres;
 }
-window.location.href =
-"mailto:info.versbrood@gmail.com?subject=Bestelling Versbrood&body=" + tekst;
+
+window.location.href = "mailto:info.versbrood@gmail.com?subject=Bestelling Versbrood&body=" + bestelling;
 }
 </script>
+
 </body>
 </html>
